@@ -28,18 +28,12 @@ GLOBAL_LIST_EMPTY(multiz_pillars_by_z)
 	return pillar
 
 /proc/is_multiz_space_opening(turf/T)
-	if(!istype(T, /turf/space))
+	if(!istype(T, /turf/space) || istype(T, /turf/space/transit))
 		return FALSE
-	if(istype(T, /turf/space/open))
-		return TRUE
-	var/turf/below_turf = get_turf_below(T)
-	while(isspaceturf(below_turf))
-		below_turf = get_turf_below(below_turf)
-	return below_turf != null
+	return !!get_turf_below(T)
 
 /proc/is_multiz_render_transparent(turf/T)
-	// Banda renders directly into transparent floors and openspace turfs. PSS13
-	// represents mapped shafts with ordinary space tiles, so recognize those too.
+	// Space tiles and transparent floors can show the linked level below.
 	return T && (T.transparent_floor || is_multiz_space_opening(T) || (istype(T, /turf/space) && get_turf_below(T)))
 
 /// Find the corresponding turf at the source level, even when open space spans

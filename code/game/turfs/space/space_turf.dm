@@ -1,8 +1,9 @@
 /turf/space
-	icon = 'icons/turf/space.dmi'
+	// SDMM renders type icons without running Initialize, so give it a valid transparent state.
+	icon = 'icons/effects/alphacolors.dmi'
 	name = "\proper space"
 	desc = "The infinite expanse of space. It's hazardous to traverse without proper protection."
-	icon_state = "0"
+	icon_state = "transparent"
 
 	temperature = TCMB
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
@@ -20,14 +21,11 @@
 	rad_insulation_alpha = RAD_NO_INSULATION
 	var/image/multiz_depth_overlay
 
-/// Open shaft tile for visible multi-z openings. Its icon state can be supplied with the hole sprite.
-/turf/space/open
-	// The dedicated opening sprite can be added later. Until then, use valid space art.
-	icon_state = "0"
-
 /turf/space/Initialize(mapload)
 	SHOULD_CALL_PARENT(FALSE)
-	if(!istype(src, /turf/space/transit) && !istype(src, /turf/space/open))
+	// Restore the real space texture in-game; the transparent icon is only for map editor previews.
+	icon = 'icons/turf/space.dmi'
+	if(!istype(src, /turf/space/transit))
 		icon_state = SPACE_ICON_STATE
 	vis_contents.Cut() //removes inherited overlays
 	multiz_rendered_below = null
@@ -80,7 +78,7 @@
 		SSair.multiz_air_openings -= src
 		icon_state = SPACE_ICON_STATE
 		return
-	// A chain of open-space turfs between floors should behave like one shaft.
+	// A chain of space turfs between floors should behave like one shaft.
 	// Flatten it to the first solid surface, or to the bottommost space turf when
 	// there is no surface. The bottommost space turf supplies the shared parallax.
 	var/turf/rendered_turf = below_turf

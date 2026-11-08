@@ -351,10 +351,6 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		return
 	if(!GLOB.use_preloader && path == type) // Don't no-op if the map loader requires it to be reconstructed
 		return src
-	// When a linked lower floor exists, dismantling a floor opens a real multiz shaft.
-	if(path == /turf/space && get_turf_below(src))
-		path = /turf/space/open
-
 	set_light(0)
 	var/old_lighting_object = lighting_object
 	var/old_blueprint_data = blueprint_data

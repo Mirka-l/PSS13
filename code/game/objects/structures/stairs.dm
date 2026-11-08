@@ -122,7 +122,7 @@
 		return
 	if(LAZYACCESS(mob_to_image, climber_ref) || !(climber in viewers(STAIR_INDICATOR_RANGE + 1, src)))
 		return
-	if(!istype(get_turf_above(get_turf(src)), /turf/space/open))
+	if(!is_multiz_space_opening(get_turf_above(get_turf(src))))
 		return
 	var/image/pointing_image = get_pointing_image()
 	climber.client.images += pointing_image
@@ -186,7 +186,7 @@
 		return
 	var/turf/stair_turf = get_turf(src)
 	var/turf/checking = get_turf_above(stair_turf)
-	if(!istype(checking, /turf/space/open))
+	if(!is_multiz_space_opening(checking))
 		REMOVE_TRAIT(climber, TRAIT_CURRENTLY_Z_MOVING, ROUNDSTART_TRAIT)
 		return
 	var/turf/target = get_step(checking, dir)
@@ -246,12 +246,12 @@
 
 /obj/structure/stairs/proc/force_open_above()
 	var/turf/above_turf = get_turf_above(get_turf(src))
-	if(above_turf && !istype(above_turf, /turf/space/open))
-		above_turf.ChangeTurf(/turf/space/open)
+	if(above_turf && !is_multiz_space_opening(above_turf))
+		above_turf.ChangeTurf(/turf/space)
 
 /obj/structure/stairs/proc/on_multiz_turf_change(datum/source, path, defer_change, keep_icon, ignore_air, copy_existing_baseturf)
 	SIGNAL_HANDLER
-	if(!QDELETED(src) && force_open_above && path != /turf/space/open)
+	if(!QDELETED(src) && force_open_above && path != /turf/space)
 		INVOKE_ASYNC(src, PROC_REF(force_open_above))
 
 /obj/structure/stairs/proc/isTerminator()

@@ -1,4 +1,6 @@
 /turf/space/transit
+	// Keep the transit-lane art in SDMM; ordinary space uses a transparent editor preview.
+	icon = 'icons/turf/space.dmi'
 	icon_state = "black"
 
 /turf/space/transit/Initialize(mapload)
