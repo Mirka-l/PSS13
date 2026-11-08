@@ -1,6 +1,7 @@
 # Paradise SS220 закрыт
+
 > [!WARNING]
-**Билд Paradise SS220 закрыт с 07/10/2026 и более не поддерживается.**
+> **Оффициальный билд Paradise SS220 закрыт с 07/10/2026 и более не поддерживается.**
 
 <a href="#"><img src=".github/assets/paradise.png" alt="Paradise Station"></a>
 
@@ -134,9 +135,10 @@ TGUI сильно отличается от большинства других 
 
 <summary><a href="#"><img src="https://img.shields.io/badge/licence-CC_4.0_BY--NC-blue?style=for-the-badge" alt="Creative Commons 4.0 BY-NC" align="centre"></a></summary>
 
->Any files with the ancestor directories [`Paradise/icons/tgmc`](icons/tgmc) are licensed under the [Creative Commons 4.0 BY-NC license](https://creativecommons.org/licenses/by-nc/4.0).
+> Any files with the ancestor directories [`Paradise/icons/tgmc`](icons/tgmc) are licensed under the [Creative Commons 4.0 BY-NC license](https://creativecommons.org/licenses/by-nc/4.0).
 >
->Further files or folders may also fall under this license, and any such instances will be specified within the folder or file.
+> Further files or folders may also fall under this license, and any such instances will be specified within the folder or file.
+
 </details>
 
 <details>
@@ -145,4 +147,3 @@ TGUI сильно отличается от большинства других 
 > All other non-code assets, including icons and sound files, are licensed under the [Creative Commons 3.0 BY-SA license](https://creativecommons.org/licenses/by-sa/3.0/), unless otherwise specified within the folder or file.
 
 </details>
-
